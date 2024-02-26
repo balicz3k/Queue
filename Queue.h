@@ -106,10 +106,8 @@ namespace que {
     Type Queue<Type>::front() {
         if(!this->empty())
             return p_front->value;
-        return 0;
+        exit(-1);
     }
-
-
 
     template<typename Type>
     Queue<Type>::~Queue() {

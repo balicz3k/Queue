@@ -3,6 +3,9 @@
 
 #include <queue>
 
-int main() {
 
+
+int main() {
+    que::Queue<int>Q;
+    std::cout<<Q;
 }
