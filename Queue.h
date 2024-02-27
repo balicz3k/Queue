@@ -34,6 +34,8 @@ namespace que {
         unsigned int size(){return q_size;};
 
         Queue & operator=(const Queue &Q){
+            while(this->q_size)
+                this->pop();
             auto tmp = Q.p_front;
             while(tmp){
                 this->push(tmp->value);
@@ -120,25 +122,5 @@ namespace que {
     }
 
 }
-
-
-
-
-
-
-
-/* idk, why it does not work here
-template<typename Type>
-std::ostream & operator<<(std::ostream &os,const Queue<Type>&Q){
-    auto tmp = Q.p_front;
-    os<<'[';
-    while(tmp->next){
-        os<<tmp->value<<", ";
-        tmp=tmp->next;
-    }
-    os<<']';
-    return os;
-}
- */
 
 #endif //QUEUE_QUEUE_H

@@ -6,6 +6,10 @@
 
 
 int main() {
-    que::Queue<int>Q;
-    std::cout<<Q;
+    que::Queue<int>Q1{5};
+    que::Queue<int>Q2(123);
+    std::cout<<"Queue1: "<<Q1<<'\n'<<"Queue2: "<<Q2<<'\n';
+    Q1.push(321);
+    Q2=Q1;//deep copy
+    std::cout<<"Queue1: "<<Q1<<'\n'<<"Queue2: "<<Q2<<'\n';
 }
