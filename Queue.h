@@ -33,32 +33,38 @@ namespace que {
 
         unsigned int size(){return q_size;};
 
-        Queue & operator=(const Queue &Q){
-            while(this->q_size)
-                this->pop();
-            auto tmp = Q.p_front;
-            while(tmp){
-                this->push(tmp->value);
-                tmp = tmp->next;
-            }
-            return *this;
-        }
+        Queue & operator=(const Queue &Q);
 
-        friend std::ostream &operator<<(std::ostream &os, const Queue<Type> &Q) {
-            auto tmp = Q.p_front;
-            os << '[';
-            while (tmp) {
-                if (!tmp->next) {
-                    os << tmp->value;
-                } else os << tmp->value << ", ";
-                tmp = tmp->next;
-            }
-            os << ']';
-            return os;
-        }
+        friend std::ostream& Queue<Type>::operator<<(std::ostream &os, const Queue<Type> &Q);
 
         ~Queue();
     };
+
+    template<typename Type>
+    std::ostream& Queue<Type>::operator<<(std::ostream &os, const Queue<Type> &Q) {
+        auto tmp = Q.p_front;
+        os << '[';
+        while (tmp) {
+            if (!tmp->next) {
+                os << tmp->value;
+            } else os << tmp->value << ", ";
+            tmp = tmp->next;
+        }
+        os << ']';
+        return os;
+    }
+
+    template<typename Type>
+    Queue<Type> &Queue<Type>::operator=(const Queue &Q) {
+        while(this->q_size)
+            this->pop();
+        auto tmp = Q.p_front;
+        while(tmp){
+            this->push(tmp->value);
+            tmp = tmp->next;
+        }
+        return *this;
+    }
 
     template<typename Type>
     Queue<Type>::Queue() {
@@ -120,7 +126,6 @@ namespace que {
             --q_size;
         }
     }
-
 }
 
 #endif //QUEUE_QUEUE_H
