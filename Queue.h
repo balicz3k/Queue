@@ -35,13 +35,14 @@ namespace que {
 
         Queue & operator=(const Queue &Q);
 
-        friend std::ostream& Queue<Type>::operator<<(std::ostream &os, const Queue<Type> &Q);
+        template<typename T>
+        friend std::ostream& operator<<(std::ostream &os, const Queue<T> &Q);
 
         ~Queue();
     };
 
-    template<typename Type>
-    std::ostream& Queue<Type>::operator<<(std::ostream &os, const Queue<Type> &Q) {
+    template<typename T>
+    std::ostream& operator<<(std::ostream &os, const Queue<T> &Q) {
         auto tmp = Q.p_front;
         os << '[';
         while (tmp) {
@@ -54,8 +55,11 @@ namespace que {
         return os;
     }
 
+
     template<typename Type>
     Queue<Type> &Queue<Type>::operator=(const Queue &Q) {
+        if(this==&Q)
+            return *this;
         while(this->q_size)
             this->pop();
         auto tmp = Q.p_front;
